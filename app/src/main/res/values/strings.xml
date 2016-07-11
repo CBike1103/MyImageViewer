@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">MyImageViewer</string>
+
+    <string name="go">Go!</string>
+    <string name="cf">陈方的App练习</string>
+</resources>

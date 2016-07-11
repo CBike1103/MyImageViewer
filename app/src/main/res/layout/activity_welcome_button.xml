@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@color/colorBg"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/welcomeMsg"
+        android:gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="@string/cf"
+        android:textColor="@color/colorButton"
+        android:textSize="36sp"/>
+
+    <Button
+        android:id="@+id/button1"
+        android:gravity="center"
+        android:layout_marginTop="15dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/button1"
+        android:text="@string/go"
+        android:textColor="@drawable/selector_button1_text"
+        android:layout_below="@id/welcomeMsg" />
+</RelativeLayout>
