@@ -11,6 +11,10 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
+
 import java.util.List;
 
 /**
@@ -22,11 +26,14 @@ public class GroupAdapter extends BaseAdapter {
     private Point point = new Point(0,0);
     private GridView gridView;
     protected LayoutInflater inflater;
+    private ImageLoader imageloader;
+    private DisplayImageOptions options = UniversalImageLoader.getDisplayImageOptions(50);
 
     public GroupAdapter(Context context,List<ImageBean> list,GridView gridView){
         this.list = list;
         this.gridView = gridView;
         inflater = LayoutInflater.from(context);
+        imageloader = UniversalImageLoader.getImageLoader(context);
     }
 
     @Override
@@ -44,7 +51,8 @@ public class GroupAdapter extends BaseAdapter {
         return position;
     }
 
-    @Override
+
+  /*  @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder viewHolder;
         ImageBean imageBean = list.get(position);
@@ -75,7 +83,7 @@ public class GroupAdapter extends BaseAdapter {
 
         int reqWidth = point.x>0?point.x : 400;
 
-        ImageLoader.getInstance().loadImage(imageBean.getImagePath(), reqWidth, new ImageLoader.NativeImageCallBack() {
+        MyImageLoader.getInstance().loadImage(imageBean.getImagePath(), reqWidth, new MyImageLoader.NativeImageCallBack() {
             @Override
             public void onImageLoad(Bitmap bitmap, String path) {
                 ImageView imageView = (ImageView)gridView.findViewWithTag(path);
@@ -86,9 +94,35 @@ public class GroupAdapter extends BaseAdapter {
         });
 
         return convertView;
+    }*/
+
+    @Override
+    public View getView(int position, View convertView, ViewGroup parent) {
+        ViewHolder viewHolder;
+        ImageBean imageBean = list.get(position);
+
+        if(convertView==null){
+            viewHolder = new ViewHolder();
+            convertView = inflater.inflate(R.layout.image_folder_grid_item,parent,false);
+            viewHolder.myImageView = (MyImageView)convertView.findViewById(R.id.group_image);
+            viewHolder.textViewCounts = (TextView)convertView.findViewById(R.id.group_count);
+            viewHolder.textViewTitle = (TextView)convertView.findViewById(R.id.group_title);
+
+            convertView.setTag(viewHolder);
+        }else{
+            viewHolder = (ViewHolder) convertView.getTag();
+        }
+
+        viewHolder.textViewTitle.setText(imageBean.getFolderName());
+        viewHolder.textViewCounts.setText(imageBean.getImageCounts()+"");
+
+        imageloader.
+                displayImage("file://"+imageBean.getImagePath(),viewHolder.myImageView,options);
+
+        return convertView;
     }
 
-    public static class ViewHolder{
+    private static class ViewHolder{
         public MyImageView myImageView;
         public TextView textViewTitle;
         public TextView textViewCounts;

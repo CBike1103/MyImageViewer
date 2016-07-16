@@ -13,14 +13,14 @@ import java.util.concurrent.Executors;
 /**
  * Created by CrossFire on 2016/7/11.
  */
-public class ImageLoader {
+public class MyImageLoader {
 
     private static LruCache<String, Bitmap> memoryCache;
-    private static ExecutorService imageThreadPool = Executors.newFixedThreadPool(1);
+    private static ExecutorService imageThreadPool = Executors.newFixedThreadPool(4);
 
-    private static ImageLoader mImageLoader;
+    private static MyImageLoader myImageLoader;
 
-    private ImageLoader() {
+    private MyImageLoader() {
         // 获取应用程序最大可用内存
         int maxMemory = (int) Runtime.getRuntime().maxMemory();
         int cacheSize = maxMemory/4;
@@ -34,11 +34,11 @@ public class ImageLoader {
     }
 
 
-    public static ImageLoader getInstance() {
-        if (mImageLoader == null) {
-            mImageLoader = new ImageLoader();
+    public static MyImageLoader getInstance() {
+        if (myImageLoader == null) {
+            myImageLoader = new MyImageLoader();
         }
-        return mImageLoader;
+        return myImageLoader;
     }
 
 

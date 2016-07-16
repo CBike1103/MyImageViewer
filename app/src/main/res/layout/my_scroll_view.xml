@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    >
+    <com.huewu.pla.lib.MultiColumnListView
+        xmlns:pla="http://schemas.android.com/apk/res-auto"
+        android:background="#ffffff"
+        android:id="@+id/my_scroll_image_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        pla:plaColumnNumber="3"
+        pla:plaLandscapeColumnNumber="5"
+        >
+    </com.huewu.pla.lib.MultiColumnListView>
+</LinearLayout>
